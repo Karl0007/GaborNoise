@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>200</width>
+    <width>297</width>
     <height>350</height>
    </rect>
   </property>
@@ -27,7 +27,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>201</width>
+     <width>297</width>
      <height>341</height>
     </rect>
    </property>
@@ -205,9 +205,9 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="Kernel">
+       <widget class="QPushButton" name="Add">
         <property name="text">
-         <string>Kernel</string>
+         <string>Add</string>
         </property>
        </widget>
       </item>
@@ -219,9 +219,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="Texture">
+       <widget class="QPushButton" name="Gabor">
         <property name="text">
-         <string>Texture</string>
+         <string>Gabor</string>
         </property>
        </widget>
       </item>

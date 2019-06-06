@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConstNum.h" />
+    <ClInclude Include="Gabor.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="MathFun2d.h" />
     <ClInclude Include="MathFunction.h" />

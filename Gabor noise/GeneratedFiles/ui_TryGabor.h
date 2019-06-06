@@ -41,20 +41,20 @@ public:
     QSlider *FSlider;
     QDoubleSpinBox *FSpinBox;
     QHBoxLayout *horizontalLayout;
-    QPushButton *Kernel;
+    QPushButton *Add;
     QPushButton *Save;
-    QPushButton *Texture;
+    QPushButton *Gabor;
 
     void setupUi(QWidget *TryGabor)
     {
         if (TryGabor->objectName().isEmpty())
             TryGabor->setObjectName(QString::fromUtf8("TryGabor"));
         TryGabor->setEnabled(true);
-        TryGabor->resize(200, 350);
+        TryGabor->resize(297, 350);
         TryGabor->setMinimumSize(QSize(200, 350));
         verticalLayoutWidget_2 = new QWidget(TryGabor);
         verticalLayoutWidget_2->setObjectName(QString::fromUtf8("verticalLayoutWidget_2"));
-        verticalLayoutWidget_2->setGeometry(QRect(0, 0, 201, 341));
+        verticalLayoutWidget_2->setGeometry(QRect(0, 0, 297, 341));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -169,20 +169,20 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        Kernel = new QPushButton(verticalLayoutWidget_2);
-        Kernel->setObjectName(QString::fromUtf8("Kernel"));
+        Add = new QPushButton(verticalLayoutWidget_2);
+        Add->setObjectName(QString::fromUtf8("Add"));
 
-        horizontalLayout->addWidget(Kernel);
+        horizontalLayout->addWidget(Add);
 
         Save = new QPushButton(verticalLayoutWidget_2);
         Save->setObjectName(QString::fromUtf8("Save"));
 
         horizontalLayout->addWidget(Save);
 
-        Texture = new QPushButton(verticalLayoutWidget_2);
-        Texture->setObjectName(QString::fromUtf8("Texture"));
+        Gabor = new QPushButton(verticalLayoutWidget_2);
+        Gabor->setObjectName(QString::fromUtf8("Gabor"));
 
-        horizontalLayout->addWidget(Texture);
+        horizontalLayout->addWidget(Gabor);
 
 
         verticalLayout->addLayout(horizontalLayout);
@@ -200,9 +200,9 @@ public:
         label_3->setText(QApplication::translate("TryGabor", "Size:", nullptr));
         label->setText(QApplication::translate("TryGabor", "Deg:", nullptr));
         label_2->setText(QApplication::translate("TryGabor", "Fre:", nullptr));
-        Kernel->setText(QApplication::translate("TryGabor", "Kernel", nullptr));
+        Add->setText(QApplication::translate("TryGabor", "Add", nullptr));
         Save->setText(QApplication::translate("TryGabor", "Save", nullptr));
-        Texture->setText(QApplication::translate("TryGabor", "Texture", nullptr));
+        Gabor->setText(QApplication::translate("TryGabor", "Gabor", nullptr));
     } // retranslateUi
 
 };

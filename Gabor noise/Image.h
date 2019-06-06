@@ -92,7 +92,7 @@ namespace Karl07 {
 //		}
 
 		void Reset(Func &f1) {
-//#pragma omp parallel for
+#pragma omp parallel for
 			for (int i = 0; i < m_h; i++) {
 				for (int j = 0; j < m_w; j++) {
 					auto h = normalh(i);

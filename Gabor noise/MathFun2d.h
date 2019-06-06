@@ -39,6 +39,7 @@ namespace Karl07 {
 	class Range {
 	public:
 		double l, r;
+		Range(double a) : l(a), r(a) {}
 		Range(double a = 0, double b = 1) : l(min(a,b)), r(max(a,b)) {}
 		Range(double a, double b, double c, double d) : l(min(min(a, b), min(c, d))), r(max(max(a, b), max(c, d))) {}
 
@@ -185,107 +186,6 @@ namespace Karl07 {
 	template<class V1, class V2>Mix2<V1, V2> operator*(V1 const &v1, V2 const &v2) { return Mix2<V1, V2>(Mix2Type::Mul, v1, v2); }
 	template<class V1, class V2>Mix2<V1, V2> operator/(V1 const &v1, V2 const &v2) { return Mix2<V1, V2>(Mix2Type::Div, v1, v2); }
 
-	class Gaussian : public Func {
-		double A;
-	public:
-		Gaussian(double a, double l = 0, double r = 1) :A(a), Func(0, 1) { setRange(Range(l, r)); };
-		double operator()(double x, double y) {
-			return Fix(std::exp(-Const::pi * A*A * ((x)*(x)+(y) * (y))));// *std::cos(2 * Const::pi*F*(x*std::cos(W) + y * std::sin(W)));
-		}
-		double operator()(double x) {
-			return Fix(K * std::exp(-Const::pi *A*A*(x)*(x)));
-		}
-	};
 
-	class Harmonic : public Func {
-		double F, W;
-	public:
-		Harmonic(double f, double w, double l = -1, double r = 1) : F(f), W(w), Func(-1, 1) { setRange(Range(l, r)); };
-		double operator()(double x, double y) {
-			return Fix(std::cos(2 * Const::pi*F*(x*std::cos(W) + y * std::sin(W))));
-		}
-	};
-
-	class Delta : public Func {
-		double T,F;
-		double stepx, stepy;
-		multimap<double, int> px;
-		multimap<double, int> py;
-		int cnt;
-	public:
-		Delta(double sx,double sy,double t = 1, double f = 0) : Func(f, t),stepx(sx),stepy(sy),cnt(0),T(t),F(f) {}
-		
-		void AddPoint(double x,double y) {
-			cnt++;
-			px.insert({ x,cnt });
-			py.insert({ y,cnt });
-		}
-
-		double operator()(double x, double y) {
-			auto bgx = px.lower_bound(x - stepx / 2);
-			auto edx = px.upper_bound(x + stepx / 2);
-			auto bgy = py.lower_bound(y - stepy / 2);
-			auto edy = py.upper_bound(y + stepy / 2);
-			for (; bgx != edx; ++bgx) {
-				for (auto y = bgy; y != edy; ++y) {
-					if (bgx->second == y->second) {
-						return Fix(T);
-					}
-				}
-			}
-			return Fix(F);
-		}
-	};
-
-	class KernelMaker {
-		Range deg, feg, size;
-		uniform_real_distribution<double> rdeg, rfeg, rsize;
-	public:
-		KernelMaker(Range &d = Range(0, 0), Range &f = Range(3, 3), Range &s = Range(3,3)) : deg(d.Fix(0,1)), feg(f.Fix(0.5,100)), size(s.Fix(0.5,100)), rdeg(d.l, d.r), rfeg(f.l, f.r), rsize(s.l, s.r) {};
-		auto Make() {
-			return Gaussian(rsize(RandEngine)) * Harmonic(rfeg(RandEngine),rdeg(RandEngine)*3.14);
-		}
-	};
-
-	class Gabor : public Func {
-	public:
-		vector<pair<pair<double, double>, Mix2<Gaussian, Harmonic>>> v;
-		//vector<pair<pair<double,double>,Mix2<Gaussian, Harmonic>>> vec[Setting::Split][Setting::Split];
-		map<double, KernelMaker> maker;
-		static double dist(double x1, double y1, double x2, double y2) { return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2)); }
-		static int getPos(double x) {
-			static Range r1(0, Setting::Split);
-			static Range r2(-0.5, 0.5);
-			return r1.Reflect(r2.Normalize(x));
-		}
-	
-	public:
-		Gabor() : Func(-1, 1) {}
-		Gabor(map<double, KernelMaker> maker) :Func(-1, 1), maker(maker) {}
-		void AddPoint(double x,double y) {
-			static uniform_real_distribution<double> d(0, 1);
-			v.push_back({ {x,y},(--maker.upper_bound(d(RandEngine)))->second.Make() });
-			//vec[getPos(x)][getPos(y)].push_back({ {x,y},(--maker.upper_bound(d(RandEngine)))->second.Make() });
-		}
-		double operator()(double x,double y) {
-			double res = 0;
-			int px = getPos(x);
-			int py = getPos(y);
-			//for (int i = max(0, px - 2); i < min(Setting::Split, px + 2); i++) {
-			//	for (int j = max(0, py - 2); j < min(Setting::Split, py + 2); j++) {
-			//		for (auto &f : vec[i][j]) {
-			//			res += f.second(x-f.first.first,y-f.first.second);
-			//		}
-			//	}
-			//}
-			for (auto &f : v) {
-				res += f.second(x-f.first.first,y-f.first.second);
-			}
-			range.Merge(res);
-			//res /= v.size();
-			return res;
-		}
-
-	};
 
 }

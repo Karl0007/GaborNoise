@@ -6,11 +6,14 @@
 #include "ui_TryGabor.h"
 #include "MathFun2d.h"
 #include "Image.h"
+#include "Gabor.h"
 using Karl07::Range;
 using Karl07::Image;
 using Karl07::Gaussian;
 using Karl07::Harmonic;
 using Karl07::Gabor;
+using Karl07::GaborMaker;
+using Karl07::KernelData;
 using Karl07::KernelMaker;
 
 class TryGabor : public QWidget
@@ -23,8 +26,11 @@ public:
 private slots:
 	void DrawOnLable0();
 	void Save();
+	void addToList();
+	void GaborShow();
 
 private:
+	vector<KernelData> vec;
 	void BindData(QSlider &slider, QDoubleSpinBox &spin);
 	void DrawOnLable(QLabel &lable, double A, double F, double W);
 	Ui::TryGabor ui;

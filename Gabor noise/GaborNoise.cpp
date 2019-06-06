@@ -4,8 +4,8 @@ GaborNoise::GaborNoise(QWidget *parent)
 	: QMainWindow(parent)
 {
 	TryGabor *tg = new TryGabor(this);
-	TryGabor *tg2 = new TryGabor();
-	tg2->show();
+	//TryGabor *tg2 = new TryGabor();
+	//tg2->show();
 	tg->show();
 	RandEngine.seed(time(0));
 	setFixedSize(MainSizeW, MainSizeH);
