@@ -1,0 +1,31 @@
+#pragma once
+
+#include <QWidget>
+#include <qmessagebox.h>
+#include <qfiledialog.h>
+#include "ui_TryGabor.h"
+#include "MathFun2d.h"
+#include "Image.h"
+using Karl07::Range;
+using Karl07::Image;
+using Karl07::Gaussian;
+using Karl07::Harmonic;
+using Karl07::Gabor;
+using Karl07::KernelMaker;
+
+class TryGabor : public QWidget
+{
+	Q_OBJECT
+public:
+	TryGabor(QWidget *parent = Q_NULLPTR);
+	~TryGabor();
+
+private slots:
+	void DrawOnLable0();
+	void Save();
+
+private:
+	void BindData(QSlider &slider, QDoubleSpinBox &spin);
+	void DrawOnLable(QLabel &lable, double A, double F, double W);
+	Ui::TryGabor ui;
+};
