@@ -5,7 +5,7 @@
 #include "MathFun2d.h"
 namespace Karl07 {
 	using Byte = unsigned char;
-
+	using namespace Setting;
 	class Image
 	{
 	private:
@@ -26,8 +26,8 @@ namespace Karl07 {
 			//cout << d.max() << endl;
 			return d(RandEngine);
 		}
-		double normalw(int x) { return Normalize(x, m_w,0)-0.5 + noise(); }
-		double normalh(int x) {return Normalize(x, m_h,0)-0.5 + noise(); }
+		double normalw(int x) { return Normalize(x, m_w,0)*DR*2-DR + noise(); }
+		double normalh(int x) {return Normalize(x, m_h,0)*DR*2-DR + noise(); }
 		//double normal(double x) { return Normalize(x, mx, mn); }
 
 		double W() { return m_w; }

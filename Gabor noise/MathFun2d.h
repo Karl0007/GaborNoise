@@ -73,7 +73,7 @@ namespace Karl07 {
 		}
 
 		Range Fix(double x, double y) {
-			return Range(max(x,l),min(r,y));
+			return Range(min(y,max(x,l)),max(x,min(y,r)));
 		}
 
 		bool operator<(Range const &other) const{

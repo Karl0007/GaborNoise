@@ -11,5 +11,6 @@ namespace Karl07 {
 		const int PictrueW = 128;
 		const int PictrueH = 128;
 		const int Split = 10;
+		const double DR = 0.5;
 	}
 }

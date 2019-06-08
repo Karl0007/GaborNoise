@@ -124,7 +124,7 @@ public:
         DSpinBox->setObjectName(QString::fromUtf8("DSpinBox"));
         DSpinBox->setReadOnly(false);
         DSpinBox->setDecimals(2);
-        DSpinBox->setMaximum(1.000000000000000);
+        DSpinBox->setMaximum(10.000000000000000);
         DSpinBox->setSingleStep(0.100000000000000);
 
         Deg->addWidget(DSpinBox);

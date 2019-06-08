@@ -32,6 +32,6 @@ private slots:
 private:
 	vector<KernelData> vec;
 	void BindData(QSlider &slider, QDoubleSpinBox &spin);
-	void DrawOnLable(QLabel &lable, double A, double F, double W);
+	void DrawOnLable(QLabel & lable, double F, double W);
 	Ui::TryGabor ui;
 };
