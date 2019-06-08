@@ -66,7 +66,7 @@ namespace Karl07 {
 		int weight;
 		KernelData(Range &f = Range(5, 5), Range &w = Range(0, 0),int weight = 1) :
 			F(f), W(w), weight(weight) {
-			F = F.Fix(0.05, 20);
+			F = F.Fix(0.001, 100);
 			W = W.Fix(0, 3.14);
 			cout << W.r << endl;
 		}
@@ -90,7 +90,7 @@ namespace Karl07 {
 		double operator ()(int seed, double x0, double y0) {
 			minstd_rand e(seed);
 			static uniform_real_distribution<double> d(-DR, DR);
-			double w = W(e), f = F(e), x = d(e) + x0, y = d(e) + y0;
+			double w = W(e), f = F(e), x = -d(e) + x0, y = -d(e) + y0;
 			return  std::exp(-Const::pi*(1.0 / (DR*DR))*(x*x + y * y)) * std::cos(2 * Const::pi*f / DR * (x*std::cos(w) + y * std::sin(w)));
 		}
 	};
@@ -99,11 +99,11 @@ namespace Karl07 {
 	public:
 		//vector<pair<pair<double, double>, Mix2<Gaussian, Harmonic>>> v;
 		map<double, KernelMaker> maker;
-		int posx, posy, N, cnt,r;
+		int N,mx,my,cnt,r;
 	public:
 		Gabor() : Func(-1, 1) {}
-		Gabor(map<double, KernelMaker> &maker, int posx, int posy, int N, int cnt,int r = 0)
-			:Func(-1, 1), maker(maker), posx(posx), posy(posy), N(N), cnt(cnt),r(r) {}
+		Gabor(map<double, KernelMaker> &maker, int N, int cnt,int mx=0,int my=0,int r = 0)
+			:Func(-1, 1), maker(maker), N(N), mx(mx),my(my),cnt(cnt),r(r) {}
 
 		//void AddPoint(double x, double y) {
 			//static uniform_real_distribution<double> d(0, 1);
@@ -115,23 +115,21 @@ namespace Karl07 {
 			static uniform_real_distribution<double> d(-DR, DR);
 			static uniform_real_distribution<double> d01(0, 1);
 			static uniform_real_distribution<double> d11(-1, 1);
-
 			//minstd_rand e0(posx*N + posy + r);
 //#pragma omp parallel for
+			int posx = Range(0, N).Reflect(Range(-DR,DR).Normalize(x)) + mx;
+			int posy = Range(0, N).Reflect(Range(-DR, DR).Normalize(y)) + my;
+
 			for (int i = -1; i <= 1; i++) {
 				for (int j = -1; j <= 1; j++) {
-					minstd_rand e0((posx+i)*N + posy+j + r);
+					minstd_rand e(posx+i+ (posy + j)*N + r);
 					for (int k = 0; k < cnt; k++) {
-						minstd_rand e(e0());
-						//res += d11(e) *maker[0](e(), x - i * DR, y - j * DR);
-						res += d11(e) * (--maker.upper_bound(d01(e)))->second(e(), x- i * DR, y- j * DR);
+						res += d11(e) * (--maker.upper_bound(d01(e)))->second(e(), 
+							-(x*N - (posx - N / 2)*DR * 2) + i * DR * 2,
+							-(y*N - (posy - N / 2)*DR * 2) + j * DR * 2);
 					}
 				}
 			}
-			//#pragma omp parallel for
-			//			for (int i = 0; i < v.size();i++) {
-			//				res += v[i].second(x - v[i].first.first, y - v[i].first.second);
-			//			}
 			range.Merge(res);
 			return res;
 		}
@@ -147,13 +145,13 @@ namespace Karl07 {
 			for (auto &i : data) sum += i.weight;
 			for (auto &i : data) maker[t] = KernelMaker(i), t += i.weight / sum;
 		}
-		Gabor operator()(int px,int py) {
+		Gabor operator()(int x,int y,int r = 0) {
 			//Gabor gabor(maker,px,py,N,cnt,r);
 			//static uniform_real_distribution<double> d(-DR, DR);
 			//for (int i = 0; i < size; i++) {
 			//	gabor.AddPoint(d(RandEngine), d(RandEngine));
 			//}
-			return Gabor(maker, px, py, N, cnt, r);
+			return Gabor(maker,N, cnt,x,y ,r);
 		}
 	};
 }

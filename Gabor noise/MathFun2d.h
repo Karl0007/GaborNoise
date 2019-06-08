@@ -180,6 +180,7 @@ namespace Karl07 {
 			return v0(v1(x, y), v2(x, y));
 		}
 	};
+
 	template<class V0, class V1, class V2> Com2<V0, V1, V2> Merge(V0 const &v0, V1 const &v1, V2 const &v2) { return Com2(v0, v1, v2); }
 	template<class V1, class V2>Mix2<V1, V2> operator+(V1 const &v1, V2 const &v2) { return Mix2<V1, V2>(Mix2Type::Add, v1, v2); }
 	template<class V1, class V2>Mix2<V1, V2> operator-(V1 const &v1, V2 const &v2) { return Mix2<V1, V2>(Mix2Type::Sub, v1, v2); }
