@@ -9,11 +9,10 @@ namespace Karl07 {
 	class Image
 	{
 	private:
-		inline static const int deep = 4;
+		static const int deep = 4;
 		int m_w, m_h;
 		Range m_r;
 		uniform_real_distribution<double> d;
-		inline static Range m_sz = Range(0, 255);
 	public:
 		Byte * m_data;
 		double * m_double;
@@ -55,6 +54,8 @@ namespace Karl07 {
 
 
 		void Update() {
+			static const Range m_sz = Range(0, 255);
+
 #pragma omp parallel for
 			for (int i = 0; i < m_h*m_w; i++) {
 				m_data[i * deep + 0] = m_sz.Reflect(m_r.Normalize(m_double[i]));

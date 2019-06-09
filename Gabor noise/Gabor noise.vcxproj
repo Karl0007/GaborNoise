@@ -91,7 +91,7 @@
       <DebugInformationFormat />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -118,6 +118,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GaborNoise.cpp" />
+    <ClCompile Include="GLPainter.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TryGabor.cpp" />
   </ItemGroup>
@@ -130,6 +131,10 @@
   <ItemGroup>
     <ClInclude Include="ConstNum.h" />
     <ClInclude Include="Gabor.h" />
+    <QtMoc Include="GLPainter.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtOpenGLExtensions;$(QTDIR)\include\QtWidgets</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtOpenGLExtensions;$(QTDIR)\include\QtWidgets</IncludePath>
+    </QtMoc>
     <ClInclude Include="Image.h" />
     <ClInclude Include="MathFun2d.h" />
     <QtMoc Include="TryGabor.h">
@@ -138,6 +143,7 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="MainWindow.ui" />
     <QtUic Include="TryGabor.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

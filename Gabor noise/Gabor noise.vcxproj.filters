@@ -8,6 +8,9 @@
     <ClCompile Include="TryGabor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GLPainter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource Files">
@@ -38,6 +41,9 @@
     <QtMoc Include="TryGabor.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="GLPainter.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="GaborNoise.qrc">
@@ -60,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="TryGabor.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="MainWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

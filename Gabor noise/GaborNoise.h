@@ -9,6 +9,7 @@
 #include "Image.h"
 #include "MathFun2d.h"
 #include "TryGabor.h"
+#include "ui_MainWindow.h"
 using Karl07::Image;
 using Karl07::Func;
 using Karl07::Gaussian;
@@ -37,4 +38,6 @@ private:
 	QPainter * m_painter;
 	QImage *img1, *img2, *img3;
 	QLabel *lable;
+
+	Ui::MainWindow ui;
 };

@@ -11,6 +11,12 @@ TryGabor::TryGabor(QWidget *parent)
 	QObject::connect(ui.Add, &QPushButton::clicked, this, &TryGabor::addToList);
 	QObject::connect(ui.Gabor, &QPushButton::clicked, this, &TryGabor::GaborShow);
 	DrawOnLable0();
+
+	//auto x = new GLPainter(ui.widget);
+	//x->show();
+	//x->paintGL();
+	//x->initializeGL();
+	//x->show();
 }
 
 TryGabor::~TryGabor()
@@ -32,6 +38,7 @@ void TryGabor::DrawOnLable(QLabel & lable, double F, double W)
 	img.Reset(KernelMaker(KernelData(Range(F, F), Range(W, W))).Make());
 	lable.setPixmap(QPixmap::fromImage(QImage(img.m_data, img.W(), img.H(), QImage::Format::Format_RGBA8888)));
 }
+
 
 void TryGabor::Save() {
 	auto file = QFileDialog::getSaveFileName();

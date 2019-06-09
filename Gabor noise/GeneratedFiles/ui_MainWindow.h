@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QWidget>
 
@@ -20,14 +21,22 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
+    QWidget *horizontalLayoutWidget;
+    QHBoxLayout *horizontalLayout;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(800, 600);
+        MainWindow->resize(916, 668);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        horizontalLayoutWidget = new QWidget(centralwidget);
+        horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setGeometry(QRect(10, 10, 891, 651));
+        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);

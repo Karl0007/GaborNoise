@@ -1,5 +1,5 @@
 #pragma once
-#include "MathFunction.h"
+//#include "MathFunction.h"
 #include <random>
 #include <functional> 
 #include <cmath>

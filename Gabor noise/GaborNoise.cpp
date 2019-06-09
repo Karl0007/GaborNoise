@@ -3,8 +3,13 @@
 GaborNoise::GaborNoise(QWidget *parent)
 	: QMainWindow(parent)
 {
+	ui.setupUi(this);
 	TryGabor *tg = new TryGabor(this);
-	tg->show();
+	//tg->show();
+	GLPainter *P = new GLPainter(this);
+	//P->show();
+	ui.horizontalLayout->addWidget(tg);
+	ui.horizontalLayout->addWidget(P);
 	RandEngine.seed(time(0));
 	setFixedSize(MainSizeW, MainSizeH);
 }

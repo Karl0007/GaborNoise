@@ -50,11 +50,11 @@ public:
         if (TryGabor->objectName().isEmpty())
             TryGabor->setObjectName(QString::fromUtf8("TryGabor"));
         TryGabor->setEnabled(true);
-        TryGabor->resize(297, 350);
+        TryGabor->resize(212, 350);
         TryGabor->setMinimumSize(QSize(200, 350));
         verticalLayoutWidget_2 = new QWidget(TryGabor);
         verticalLayoutWidget_2->setObjectName(QString::fromUtf8("verticalLayoutWidget_2"));
-        verticalLayoutWidget_2->setGeometry(QRect(0, 0, 297, 341));
+        verticalLayoutWidget_2->setGeometry(QRect(0, 0, 211, 341));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);

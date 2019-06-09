@@ -68,7 +68,6 @@ namespace Karl07 {
 			F(f), W(w), weight(weight) {
 			F = F.Fix(1/Setting::FRange, Setting::FRange);
 			W = W.Fix(0, Const::pi);
-			cout << W.r << endl;
 		}
 		string ToStr() {}
 	};

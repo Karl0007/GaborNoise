@@ -7,6 +7,7 @@
 #include "MathFun2d.h"
 #include "Image.h"
 #include "Gabor.h"
+#include "GLPainter.h"
 using Karl07::Range;
 using Karl07::Image;
 using Karl07::Gaussian;
