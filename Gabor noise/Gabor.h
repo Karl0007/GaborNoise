@@ -100,10 +100,11 @@ namespace Karl07 {
 		//vector<pair<pair<double, double>, Mix2<Gaussian, Harmonic>>> v;
 		map<double, KernelMaker> maker;
 		int N,mx,my,cnt,r;
+		double con;
 	public:
 		Gabor() : Func(-1, 1) {}
-		Gabor(map<double, KernelMaker> &maker, int N, int cnt,int mx=0,int my=0,int r = 0)
-			:Func(-1, 1), maker(maker), N(N), mx(mx),my(my),cnt(cnt),r(r) {}
+		Gabor(map<double, KernelMaker> &maker, int N, int cnt,double con,int mx=0,int my=0,int r = 0)
+			:Func(-1, 1), maker(maker), N(N), mx(mx),my(my),cnt(cnt),r(r),con(con) {}
 
 		//void AddPoint(double x, double y) {
 			//static uniform_real_distribution<double> d(0, 1);
@@ -114,11 +115,11 @@ namespace Karl07 {
 			double res = 0;
 			static uniform_real_distribution<double> d(-DR, DR);
 			static uniform_real_distribution<double> d01(0, 1);
-			static uniform_real_distribution<double> d11(-1, 1);
+			static uniform_real_distribution<double> d11(-con, con);
 			//minstd_rand e0(posx*N + posy + r);
 //#pragma omp parallel for
-			int posx = Range(0, N).Reflect(Range(-DR,DR).Normalize(x)) + mx;
-			int posy = Range(0, N).Reflect(Range(-DR, DR).Normalize(y)) + my;
+			int posx = Range(0, N).Reflect(Range(-DR,DR).Normalize(x));
+			int posy = Range(0, N).Reflect(Range(-DR, DR).Normalize(y));
 
 			for (int i = -1; i <= 1; i++) {
 				for (int j = -1; j <= 1; j++) {
@@ -130,7 +131,7 @@ namespace Karl07 {
 					}
 				}
 			}
-			range.Merge(res);
+			//range.Merge(res);
 			return res;
 		}
 	};
@@ -145,13 +146,13 @@ namespace Karl07 {
 			for (auto &i : data) sum += i.weight;
 			for (auto &i : data) maker[t] = KernelMaker(i), t += i.weight / sum;
 		}
-		Gabor operator()(int x,int y,int r = 0) {
+		Gabor operator()(double con = 1,int x=0,int y = 0,int r = 0) {
 			//Gabor gabor(maker,px,py,N,cnt,r);
 			//static uniform_real_distribution<double> d(-DR, DR);
 			//for (int i = 0; i < size; i++) {
 			//	gabor.AddPoint(d(RandEngine), d(RandEngine));
 			//}
-			return Gabor(maker,N, cnt,x,y ,r);
+			return Gabor(maker,N,cnt,con,x,y ,r);
 		}
 	};
 }
