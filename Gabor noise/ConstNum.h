@@ -12,5 +12,7 @@ namespace Karl07 {
 		const int PictrueH = 128;
 		const int Split = 10;
 		const double DR = 0.5;
+		const double FRange = 100;
+
 	}
 }

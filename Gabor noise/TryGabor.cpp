@@ -24,15 +24,10 @@ void TryGabor::BindData(QSlider& slider, QDoubleSpinBox & spin)
 	QObject::connect(&spin, px, [&](double val) {slider.setValue(Range(slider.minimum(),slider.maximum()).Reflect(Range(spin.minimum(), spin.maximum()).Normalize(val)));});
 	QObject::connect(&slider, &QSlider::sliderMoved, this, &TryGabor::DrawOnLable0);
 	QObject::connect(&spin, px, this, &TryGabor::DrawOnLable0);
-
-	//QObject::connect(&spin, px, [&](double val) {slider.setValue(Range(spin.minimum(), spin.maximum()).Normalize(val)); });
 }
 
 void TryGabor::DrawOnLable(QLabel & lable, double F, double W)
 {
-	//for (auto &i : c) i = 255;
-	//Image img(lable.size().width(), lable.size().height(), KernelMaker(Range(W, W), Range(F, F), Range(A, A)).Make());
-	//cout << (int)img.m_data[201 * 201 * 3+100] << endl;
 	static Image img(lable.size().width(), lable.size().height());
 	img.Reset(KernelMaker(KernelData(Range(F, F), Range(W, W))).Make());
 	lable.setPixmap(QPixmap::fromImage(QImage(img.m_data, img.W(), img.H(), QImage::Format::Format_RGBA8888)));

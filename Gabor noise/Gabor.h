@@ -66,8 +66,8 @@ namespace Karl07 {
 		int weight;
 		KernelData(Range &f = Range(5, 5), Range &w = Range(0, 0),int weight = 1) :
 			F(f), W(w), weight(weight) {
-			F = F.Fix(0.001, 100);
-			W = W.Fix(0, 3.14);
+			F = F.Fix(1/Setting::FRange, Setting::FRange);
+			W = W.Fix(0, Const::pi);
 			cout << W.r << endl;
 		}
 		string ToStr() {}
@@ -80,8 +80,7 @@ namespace Karl07 {
 		KernelMaker() {}
 		KernelMaker(KernelData &Data):
 			W(Data.W.l, Data.W.r), F(Data.F.l, Data.F.r){};
-		//KernelMaker(Range &f = Range(5, 5), Range &w = Range(0, 0)) :
-		//	F(f.Fix(0.1, 10).l, w.Fix(0.1, 10).r), W(w.Fix(0, 1.57).l, w.Fix(0, 1.57).r) {}
+
 		auto Make(int seed = 0) {
 			minstd_rand e(seed);
 			double w = W(e), f = F(e);
@@ -97,7 +96,6 @@ namespace Karl07 {
 
 	class Gabor : public Func {
 	public:
-		//vector<pair<pair<double, double>, Mix2<Gaussian, Harmonic>>> v;
 		map<double, KernelMaker> maker;
 		int N,mx,my,cnt,r;
 		double con;
@@ -106,19 +104,13 @@ namespace Karl07 {
 		Gabor(map<double, KernelMaker> &maker, int N, int cnt,double con,int mx=0,int my=0,int r = 0)
 			:Func(-1, 1), maker(maker), N(N), mx(mx),my(my),cnt(cnt),r(r),con(con) {}
 
-		//void AddPoint(double x, double y) {
-			//static uniform_real_distribution<double> d(0, 1);
-			//v.push_back({ {x,y},(--maker.upper_bound(d(RandEngine)))->second.Make(e()) });
-		//}
-
 		double operator()(double x, double y) {
 			double res = 0;
 			static uniform_real_distribution<double> d(-DR, DR);
 			static uniform_real_distribution<double> d01(0, 1);
 			static uniform_real_distribution<double> d11(-con, con);
-			//minstd_rand e0(posx*N + posy + r);
-//#pragma omp parallel for
-			int posx = Range(0, N).Reflect(Range(-DR,DR).Normalize(x));
+
+			int posx = Range(0, N).Reflect(Range(-DR, DR).Normalize(x));
 			int posy = Range(0, N).Reflect(Range(-DR, DR).Normalize(y));
 
 			for (int i = -1; i <= 1; i++) {
@@ -131,7 +123,6 @@ namespace Karl07 {
 					}
 				}
 			}
-			//range.Merge(res);
 			return res;
 		}
 	};
@@ -147,11 +138,6 @@ namespace Karl07 {
 			for (auto &i : data) maker[t] = KernelMaker(i), t += i.weight / sum;
 		}
 		Gabor operator()(double con = 1,int x=0,int y = 0,int r = 0) {
-			//Gabor gabor(maker,px,py,N,cnt,r);
-			//static uniform_real_distribution<double> d(-DR, DR);
-			//for (int i = 0; i < size; i++) {
-			//	gabor.AddPoint(d(RandEngine), d(RandEngine));
-			//}
 			return Gabor(maker,N,cnt,con,x,y ,r);
 		}
 	};

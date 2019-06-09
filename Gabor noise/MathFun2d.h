@@ -7,23 +7,11 @@
 #include <unordered_set>
 #include <string>
 #include <set>
+#include "ConstNum.h"
+using namespace std;
 
 namespace Karl07 {
-	//using MF2D = MathFunction<double, 2>;
-	//inline static auto &Math2 = MF2D::getInstance();
-	//static auto &X = Math2.V[0];
-	//static auto &Y = Math2.V[1];
-	//static int MF2DNowSize() { return Math2.size(); }
-	//static auto& C(double x) { return Math2.New(x); }
-	//static auto& V(double &x) { return Math2.New(&x); }
-	//static auto& sin(MF2D::Expression &e,double A = 1,double w = 1,double phi = 0) { return e.Sin(A,w,phi); }
-	//static auto& cos(MF2D::Expression &e, double A = 1, double w = 1, double phi = 0) { return e.Cos(A,w,phi); }
-	//static auto& asin(MF2D::Expression &e) { return e.ArcSin(); }
-	//static auto& acos(MF2D::Expression &e) { return e.ArcCos(); }
-	//static auto& exp(MF2D::Expression &e) { return e.Exp(); }
-	//static auto& log(MF2D::Expression &e) { return e.Log(); }
 
-	//template<class T>
 	static default_random_engine RandEngine;
 
 	static double Normalize(double x, double mx, double mn) {
@@ -31,7 +19,6 @@ namespace Karl07 {
 		return (x - mn) / (mx - mn);
 	}
 
-	//template<class T>
 	static int Reflect(double x, double mx, double mn) {
 		return mn + (mx - mn)*x;
 	}
@@ -98,6 +85,7 @@ namespace Karl07 {
 	};
 
 	class Func;
+
 	template<class V0,class V1, class V2>
 	class Com2;
 

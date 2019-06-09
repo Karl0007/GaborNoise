@@ -20,7 +20,6 @@ using Karl07::KernelMaker;
 using Karl07::Gabor;
 using Karl07::RandEngine;
 using Karl07::Merge;
-//using Karl07::Mix2;
 using namespace Karl07::Setting;
 using namespace Karl07::Const;
 
@@ -34,7 +33,6 @@ public:
 private:
 	void showImg(Image& img, QLabel &lable);
 	void saveImg(Image & img, const char * s);
-	//Fun Gabor(double K,double a,double F,double w);
 	QPaintDevice * m_painterDevice;
 	QPainter * m_painter;
 	QImage *img1, *img2, *img3;
