@@ -57,7 +57,7 @@ void TryGabor::GaborShow()
 {
 	if (vec.empty()) return;
 	static Image img(ui.Picture->size().width(), ui.Picture->size().height());
-	img.Reset(GaborMaker(std::move(vec),2)(2));
+	img.Reset(GaborMaker(vec,3)(1));
 	vec.clear();
 	ui.Picture->setPixmap(QPixmap::fromImage(QImage(img.m_data, img.W(), img.H(), QImage::Format::Format_RGBA8888)));
 }

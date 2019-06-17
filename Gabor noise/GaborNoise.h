@@ -10,6 +10,7 @@
 #include "MathFun2d.h"
 #include "TryGabor.h"
 #include "ui_MainWindow.h"
+#include <qkeyeventtransition.h>
 using Karl07::Image;
 using Karl07::Func;
 using Karl07::Gaussian;
@@ -34,6 +35,7 @@ public:
 private:
 	void showImg(Image& img, QLabel &lable);
 	void saveImg(Image & img, const char * s);
+	void keyPressEvent(QKeyEvent *e);
 	QPaintDevice * m_painterDevice;
 	QPainter * m_painter;
 	QImage *img1, *img2, *img3;

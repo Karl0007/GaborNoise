@@ -114,7 +114,7 @@ namespace Karl07 {
 
 			for (int i = -1; i <= 1; i++) {
 				for (int j = -1; j <= 1; j++) {
-					minstd_rand e(posx+i+ (posy + j)*N + r);
+					minstd_rand e((posx+i+N)%N+ ((posy + j+N)%N)*N + r);
 					for (int k = 0; k < cnt; k++) {
 						res += d11(e) * (--maker.upper_bound(d01(e)))->second(e(), 
 							-(x*N - (posx - N / 2)*DR * 2) + i * DR * 2,
