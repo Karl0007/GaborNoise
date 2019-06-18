@@ -52,7 +52,7 @@ void GLPainter::paintGL()
 	static bool reset = 0;
 	if (!reset) {
 		reset = 1;
-		img.Reset(GaborMaker(vector<Karl07::KernelData>{ Karl07::KernelData{ Karl07::Range(1,5),Karl07::Range(3.14/2,3.14/2) } }, 3)());
+		img.Reset(GaborMaker(vector<Karl07::KernelData>{ Karl07::KernelData{ Karl07::Range(1,5),Karl07::Range(3.14/4,3.14/4) } }, 3)());
 		t.Reset(img);
 		t.SetUse(true);
 	}
@@ -82,11 +82,11 @@ void GLPainter::paintGL()
 		}
 		//glBindTexture(GL_TEXTURE_2D, 0);
 	}
-	*/ // 纹理绑定
+	 // 纹理绑定*/
 
 	// 画球
 	{
-		int step = 20;
+		int step = 4;
 		int R = 1;
 		const float pi = 3.14159;
 		float phi = -pi / 2;
@@ -102,27 +102,29 @@ void GLPainter::paintGL()
 		//glTranslatef(-0.5, -0.5, 0);
 		glRotated(rx, 0, 1, 0);
 		glRotated(ry, 1, 0, 0);
+
+
 		glBegin(GL_QUADS);
 		for (int i = 0; i < step; i++) {
 			for (int j = 0; j < step; j++) {
-				//glTexCoord2f(j*1.0 / step, cos(-pi / 2 + i * pi / step));
-				glTexCoord2f(j*1.0 / step, i*1.0 / step);
+				glTexCoord2f(j*1.0 / step, cos(i * pi / step));
+				//glTexCoord2f(j*1.0 / step, i*1.0 / step);
 				glNormal3f(X(i, j), Y(i, j), Z(i, j));
 				glVertex3f(X(i, j), Y(i, j), Z(i, j));
 
-				//glTexCoord2f((j + 1)*1.0 / step, cos(-pi / 2 + i * pi / step));
-				glTexCoord2f((j+1)*1.0 / step, i*1.0 / step);
-				glNormal3f(X(i, j + 1), Y(i, j + 1), Z(i, j + 1));
+				glTexCoord2f((j + 1)*1.0 / step, cos(i * pi / step));
+				//glTexCoord2f((j+1)*1.0 / step, i*1.0 / step);
+				//glNormal3f(X(i, j + 1), Y(i, j + 1), Z(i, j + 1));
 				glVertex3f(X(i, j + 1), Y(i, j + 1), Z(i, j + 1));
 				
-				//glTexCoord2f((j + 1)*1.0 / step, cos(-pi / 2 + (i+1) * pi / step));
-				glTexCoord2f((j + 1)*1.0 / step, (i + 1)*1.0 / step);
-				glNormal3f(X(i + 1, j + 1), Y(i + 1, j + 1), Z(i + 1, j + 1));
+				glTexCoord2f((j + 1)*1.0 / step, cos((i+1) * pi / step));
+				//glTexCoord2f((j + 1)*1.0 / step, (i + 1)*1.0 / step);
+				//glNormal3f(X(i + 1, j + 1), Y(i + 1, j + 1), Z(i + 1, j + 1));
 				glVertex3f(X(i + 1, j + 1), Y(i + 1, j + 1), Z(i + 1, j + 1));
 
-				//glTexCoord2f((j)*1.0 / step, cos(-pi / 2 + (i+1) * pi / step));
-				glTexCoord2f((j)*1.0 / step, (i + 1)*1.0 / step);
-				glNormal3f(X(i + 1, j), Y(i + 1, j), Z(i + 1, j));
+				glTexCoord2f((j)*1.0 / step, cos((i+1) * pi / step));
+				//glTexCoord2f((j)*1.0 / step, (i + 1)*1.0 / step);
+				//glNormal3f(X(i + 1, j), Y(i + 1, j), Z(i + 1, j));
 				glVertex3f(X(i + 1, j), Y(i + 1, j), Z(i + 1, j));
 			}
 		}
@@ -186,7 +188,9 @@ void GLPainter::paintGL()
 void GLPainter::mouseMoveEvent(QMouseEvent * e)
 {
 	//paintGL();
-	cout << ry << " " << rx << endl;
+
+	//glLoadMatrixf();
+	//cout << ry << " " << rx << endl;
 	rx -= (lx - e->x());
 	ry -= (ly - e->y());
 	lx = e->x();
