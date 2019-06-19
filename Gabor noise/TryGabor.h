@@ -8,6 +8,8 @@
 #include "Image.h"
 #include "Gabor.h"
 #include "GLPainter.h"
+#include "QtPainterWidget.h"
+#include <qpaintdevice.h>
 using Karl07::Range;
 using Karl07::Image;
 using Karl07::Gaussian;

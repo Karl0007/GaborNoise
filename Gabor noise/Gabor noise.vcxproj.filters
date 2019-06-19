@@ -11,6 +11,9 @@
     <ClCompile Include="GLPainter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QtPainterWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource Files">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="GLPainter.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QtPainterWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

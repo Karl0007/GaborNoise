@@ -2,7 +2,7 @@
 #include <QtWidgets/QApplication>
 #include <iostream>
 #include "MathFun2d.h"
-
+#include <qcolordialog.h>
 
 
 

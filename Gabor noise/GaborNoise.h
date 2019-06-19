@@ -10,6 +10,8 @@
 #include "MathFun2d.h"
 #include "TryGabor.h"
 #include "ui_MainWindow.h"
+#include <qcolor.h>
+#include <qcolordialog.h>
 #include <qkeyeventtransition.h>
 using Karl07::Image;
 using Karl07::Func;

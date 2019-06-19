@@ -44,17 +44,18 @@ public:
     QPushButton *Add;
     QPushButton *Save;
     QPushButton *Gabor;
+    QLabel *Painter;
 
     void setupUi(QWidget *TryGabor)
     {
         if (TryGabor->objectName().isEmpty())
             TryGabor->setObjectName(QString::fromUtf8("TryGabor"));
         TryGabor->setEnabled(true);
-        TryGabor->resize(212, 350);
+        TryGabor->resize(457, 605);
         TryGabor->setMinimumSize(QSize(200, 350));
         verticalLayoutWidget_2 = new QWidget(TryGabor);
         verticalLayoutWidget_2->setObjectName(QString::fromUtf8("verticalLayoutWidget_2"));
-        verticalLayoutWidget_2->setGeometry(QRect(0, 0, 211, 341));
+        verticalLayoutWidget_2->setGeometry(QRect(0, 0, 231, 581));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -187,6 +188,12 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
+        Painter = new QLabel(verticalLayoutWidget_2);
+        Painter->setObjectName(QString::fromUtf8("Painter"));
+        Painter->setMinimumSize(QSize(200, 200));
+
+        verticalLayout->addWidget(Painter);
+
 
         retranslateUi(TryGabor);
 
@@ -203,6 +210,7 @@ public:
         Add->setText(QApplication::translate("TryGabor", "Add", nullptr));
         Save->setText(QApplication::translate("TryGabor", "Save", nullptr));
         Gabor->setText(QApplication::translate("TryGabor", "Gabor", nullptr));
+        Painter->setText(QString());
     } // retranslateUi
 
 };

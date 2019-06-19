@@ -5,6 +5,7 @@
 #include "GLTexture.h"
 #include "Image.h"
 #include "Gabor.h"
+#include <gl/GLU.h>
 #include <qevent.h>
 using namespace std;
 using Karl07::GaborMaker;

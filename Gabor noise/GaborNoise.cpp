@@ -11,7 +11,9 @@ GaborNoise::GaborNoise(QWidget *parent)
 	ui.horizontalLayout->addWidget(tg);
 	ui.horizontalLayout->addWidget(P);
 	RandEngine.seed(time(0));
-	setFixedSize(MainSizeW, MainSizeH);
+	(new QColorDialog)->show();
+
+	//setFixedSize(MainSizeW, MainSizeH);
 }
 
 void GaborNoise::showImg(Image & img, QLabel & lable)
