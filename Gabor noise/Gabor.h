@@ -107,8 +107,8 @@ namespace Karl07 {
 			double res = 0;
 			static uniform_real_distribution<double> d(-DR, DR);
 			static uniform_real_distribution<double> d01(0, 1);
-			static uniform_real_distribution<double> d11(-con, con);
-
+			static uniform_real_distribution<double> d11(-1, 1);
+			
 			int posx = Range(0, N).Reflect(Range(-DR, DR).Normalize(x));
 			int posy = Range(0, N).Reflect(Range(-DR, DR).Normalize(y));
 
@@ -116,7 +116,7 @@ namespace Karl07 {
 				for (int j = -1; j <= 1; j++) {
 					minstd_rand e((posx+i+N)%N+ ((posy + j+N)%N)*N + r);
 					for (int k = 0; k < cnt; k++) {
-						res += d11(e) * (--maker.upper_bound(d01(e)))->second(e(), 
+						res += con * d11(e) * (--maker.upper_bound(d01(e)))->second(e(), 
 							-(x*N - (posx - N / 2)*DR * 2) + i * DR * 2,
 							-(y*N - (posy - N / 2)*DR * 2) + j * DR * 2);
 					}

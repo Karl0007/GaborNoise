@@ -12,8 +12,10 @@ TryGabor::TryGabor(QWidget *parent)
 	QObject::connect(ui.Gabor, &QPushButton::clicked, this, &TryGabor::GaborShow);
 	DrawOnLable0();
 
-	auto mpaint = new QtPainterWidget(nullptr);
-	mpaint->show();
+//	auto mpaint = new QtPainterWidget(nullptr);
+//	mpaint->show();
+
+	(new ParaTable(nullptr))->show();
 
 
 	//auto x = new GLPainter(ui.widget);

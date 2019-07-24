@@ -13,6 +13,13 @@ namespace Karl07 {
 		const int Split = 10;
 		const double DR = 0.5;
 		const double FRange = 100;
+		const double FMIN = 0.05;
+		const double FMAX = 2;
+		const double WMIN = 0;
+		const double WMAX = Const::pi;
+
+
+
 
 	}
 }

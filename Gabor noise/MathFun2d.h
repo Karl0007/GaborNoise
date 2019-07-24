@@ -46,6 +46,10 @@ namespace Karl07 {
 			return l + (r - l)*x;
 		}
 
+		static double FromTo(double lfrom, double rfrom, double lto, double rto, double x) {
+			return lto + (x - lfrom) / (rfrom - lfrom)*(rto - lto);
+		}
+
 		double len() const {
 			return r - l;
 		}
