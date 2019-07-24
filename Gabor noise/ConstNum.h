@@ -14,9 +14,11 @@ namespace Karl07 {
 		const double DR = 0.5;
 		const double FRange = 100;
 		const double FMIN = 0.05;
-		const double FMAX = 2;
+		const double FMAX = 5;
 		const double WMIN = 0;
 		const double WMAX = Const::pi;
+		const double AMIN = 1;
+		const double AMAX = 3;
 
 
 

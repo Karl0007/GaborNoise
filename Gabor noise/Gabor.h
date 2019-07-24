@@ -63,9 +63,10 @@ namespace Karl07 {
 	class KernelData {
 	public:
 		Range W, F;
+		double A;
 		int weight;
-		KernelData(Range &f = Range(5, 5), Range &w = Range(0, 0),int weight = 1) :
-			F(f), W(w), weight(weight) {
+		KernelData(Range &f = Range(5, 5), Range &w = Range(0, 0),double A = 1,int weight = 1) :
+			F(f), W(w), weight(weight),A(A) {
 			F = F.Fix(1/Setting::FRange, Setting::FRange);
 			W = W.Fix(0, Const::pi);
 		}
@@ -75,15 +76,16 @@ namespace Karl07 {
 
 	class KernelMaker {
 		uniform_real_distribution<double> F, W;
+		double A;
 	public:
 		KernelMaker() {}
 		KernelMaker(KernelData &Data):
-			W(Data.W.l, Data.W.r), F(Data.F.l, Data.F.r){};
+			W(Data.W.l, Data.W.r), F(Data.F.l, Data.F.r),A(Data.A){};
 
 		auto Make(int seed = 0) {
 			minstd_rand e(seed);
 			double w = W(e), f = F(e);
-			return Gaussian(1.0/DR) * Harmonic(F(e)/DR, W(e));
+			return Gaussian(1.0/DR*A) * Harmonic(F(e)/DR, W(e));
 		}
 		double operator ()(int seed, double x0, double y0) {
 			minstd_rand e(seed);

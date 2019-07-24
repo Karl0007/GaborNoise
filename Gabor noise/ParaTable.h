@@ -2,6 +2,8 @@
 
 #include <QWidget>
 #include <iostream>
+#include <qfile.h>
+#include <qfiledialog.h>
 #include "ui_ParaTable.h"
 #include "MathFun2d.h"
 #include "qpainter.h"
@@ -27,6 +29,8 @@ private slots:
 	void AddNewRow();
 	void DeleteRow();
 	void TableClick(QModelIndex const& index);
+	void Save();
+	void Load();
 	//void FminChange(int);
 	//void FmaxChange(int);
 	//void WminChange(int);
@@ -35,7 +39,7 @@ private slots:
 	//void PChange(int);
 
 private:
-	double fmin, fmax, wmin, wmax,pnum,anum;
+	double fmin, fmax, wmin, wmax,pnum,anum,frg,wrg;
 	void setNew(int index,int from);
 	void getNum(int index);
 	QtPainterWidget *painter;

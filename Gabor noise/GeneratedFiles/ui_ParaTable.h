@@ -26,12 +26,12 @@ class Ui_ParaTable
 {
 public:
     QTableWidget *tableWidget;
-    QSpinBox *spinBox;
+    QSpinBox *Seed;
     QLabel *label;
-    QSpinBox *spinBox_2;
+    QSpinBox *KernelNum;
     QLabel *label_2;
     QLabel *label_3;
-    QDoubleSpinBox *doubleSpinBox;
+    QDoubleSpinBox *Contrast;
     QWidget *widget;
     QLabel *Image;
     QLabel *label_4;
@@ -41,12 +41,15 @@ public:
     QSlider *Pnum;
     QPushButton *New;
     QPushButton *Delete;
+    QPushButton *Save;
+    QPushButton *Load;
+    QPushButton *OK;
 
     void setupUi(QWidget *ParaTable)
     {
         if (ParaTable->objectName().isEmpty())
             ParaTable->setObjectName(QString::fromUtf8("ParaTable"));
-        ParaTable->resize(1004, 514);
+        ParaTable->resize(789, 487);
         tableWidget = new QTableWidget(ParaTable);
         if (tableWidget->columnCount() < 4)
             tableWidget->setColumnCount(4);
@@ -61,7 +64,7 @@ public:
         if (tableWidget->rowCount() < 5)
             tableWidget->setRowCount(5);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
-        tableWidget->setGeometry(QRect(10, 60, 731, 291));
+        tableWidget->setGeometry(QRect(10, 60, 491, 291));
         tableWidget->setMouseTracking(false);
         tableWidget->setFocusPolicy(Qt::StrongFocus);
         tableWidget->setShowGrid(true);
@@ -73,45 +76,45 @@ public:
         tableWidget->horizontalHeader()->setMinimumSectionSize(120);
         tableWidget->verticalHeader()->setVisible(false);
         tableWidget->verticalHeader()->setDefaultSectionSize(30);
-        spinBox = new QSpinBox(ParaTable);
-        spinBox->setObjectName(QString::fromUtf8("spinBox"));
-        spinBox->setGeometry(QRect(100, 20, 61, 22));
+        Seed = new QSpinBox(ParaTable);
+        Seed->setObjectName(QString::fromUtf8("Seed"));
+        Seed->setGeometry(QRect(80, 20, 61, 22));
         label = new QLabel(ParaTable);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(40, 20, 51, 20));
-        spinBox_2 = new QSpinBox(ParaTable);
-        spinBox_2->setObjectName(QString::fromUtf8("spinBox_2"));
-        spinBox_2->setGeometry(QRect(280, 20, 61, 22));
-        spinBox_2->setMinimum(5);
-        spinBox_2->setMaximum(100);
-        spinBox_2->setSingleStep(5);
-        spinBox_2->setValue(20);
+        label->setGeometry(QRect(20, 20, 51, 20));
+        KernelNum = new QSpinBox(ParaTable);
+        KernelNum->setObjectName(QString::fromUtf8("KernelNum"));
+        KernelNum->setGeometry(QRect(260, 20, 61, 22));
+        KernelNum->setMinimum(5);
+        KernelNum->setMaximum(100);
+        KernelNum->setSingleStep(5);
+        KernelNum->setValue(20);
         label_2 = new QLabel(ParaTable);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(190, 20, 81, 20));
+        label_2->setGeometry(QRect(170, 20, 81, 20));
         label_3 = new QLabel(ParaTable);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(370, 20, 81, 20));
-        doubleSpinBox = new QDoubleSpinBox(ParaTable);
-        doubleSpinBox->setObjectName(QString::fromUtf8("doubleSpinBox"));
-        doubleSpinBox->setGeometry(QRect(450, 20, 70, 22));
-        doubleSpinBox->setDecimals(1);
-        doubleSpinBox->setMaximum(3.000000000000000);
-        doubleSpinBox->setSingleStep(0.200000000000000);
-        doubleSpinBox->setValue(1.000000000000000);
+        label_3->setGeometry(QRect(350, 20, 81, 20));
+        Contrast = new QDoubleSpinBox(ParaTable);
+        Contrast->setObjectName(QString::fromUtf8("Contrast"));
+        Contrast->setGeometry(QRect(430, 20, 70, 22));
+        Contrast->setDecimals(1);
+        Contrast->setMaximum(3.000000000000000);
+        Contrast->setSingleStep(0.200000000000000);
+        Contrast->setValue(1.000000000000000);
         widget = new QWidget(ParaTable);
         widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(750, 290, 200, 200));
+        widget->setGeometry(QRect(560, 250, 200, 200));
         widget->setMinimumSize(QSize(200, 200));
         widget->setMaximumSize(QSize(200, 200));
         Image = new QLabel(ParaTable);
         Image->setObjectName(QString::fromUtf8("Image"));
-        Image->setGeometry(QRect(750, 70, 200, 200));
+        Image->setGeometry(QRect(560, 40, 200, 200));
         Image->setMinimumSize(QSize(200, 200));
         Image->setMaximumSize(QSize(200, 200));
         label_4 = new QLabel(ParaTable);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(830, 20, 72, 15));
+        label_4->setGeometry(QRect(650, 20, 72, 15));
         Fnum = new QSlider(ParaTable);
         Fnum->setObjectName(QString::fromUtf8("Fnum"));
         Fnum->setGeometry(QRect(20, 360, 101, 22));
@@ -130,10 +133,19 @@ public:
         Pnum->setOrientation(Qt::Horizontal);
         New = new QPushButton(ParaTable);
         New->setObjectName(QString::fromUtf8("New"));
-        New->setGeometry(QRect(560, 20, 93, 28));
+        New->setGeometry(QRect(20, 410, 93, 28));
         Delete = new QPushButton(ParaTable);
         Delete->setObjectName(QString::fromUtf8("Delete"));
-        Delete->setGeometry(QRect(670, 20, 93, 28));
+        Delete->setGeometry(QRect(140, 410, 93, 28));
+        Save = new QPushButton(ParaTable);
+        Save->setObjectName(QString::fromUtf8("Save"));
+        Save->setGeometry(QRect(260, 410, 93, 28));
+        Load = new QPushButton(ParaTable);
+        Load->setObjectName(QString::fromUtf8("Load"));
+        Load->setGeometry(QRect(380, 410, 93, 28));
+        OK = new QPushButton(ParaTable);
+        OK->setObjectName(QString::fromUtf8("OK"));
+        OK->setGeometry(QRect(190, 440, 101, 41));
 
         retranslateUi(ParaTable);
 
@@ -152,14 +164,17 @@ public:
         QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
         ___qtablewidgetitem3->setText(QApplication::translate("ParaTable", "P", nullptr));
         label->setText(QApplication::translate("ParaTable", "Seed:", nullptr));
-        spinBox_2->setSuffix(QString());
-        spinBox_2->setPrefix(QString());
+        KernelNum->setSuffix(QString());
+        KernelNum->setPrefix(QString());
         label_2->setText(QApplication::translate("ParaTable", "KernelNum:", nullptr));
         label_3->setText(QApplication::translate("ParaTable", "Contrast:", nullptr));
         Image->setText(QString());
         label_4->setText(QApplication::translate("ParaTable", "\351\242\204\350\247\210", nullptr));
         New->setText(QApplication::translate("ParaTable", "New", nullptr));
         Delete->setText(QApplication::translate("ParaTable", "Delete", nullptr));
+        Save->setText(QApplication::translate("ParaTable", "Save", nullptr));
+        Load->setText(QApplication::translate("ParaTable", "Load", nullptr));
+        OK->setText(QApplication::translate("ParaTable", "OK", nullptr));
     } // retranslateUi
 
 };
