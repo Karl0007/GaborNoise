@@ -44,15 +44,19 @@ public:
     QPushButton *Save;
     QPushButton *Load;
     QPushButton *OK;
+    QSlider *Frange;
+    QSlider *Wrange;
+    QLabel *label_5;
+    QLabel *label_6;
 
     void setupUi(QWidget *ParaTable)
     {
         if (ParaTable->objectName().isEmpty())
             ParaTable->setObjectName(QString::fromUtf8("ParaTable"));
-        ParaTable->resize(789, 487);
+        ParaTable->resize(1012, 459);
         tableWidget = new QTableWidget(ParaTable);
-        if (tableWidget->columnCount() < 4)
-            tableWidget->setColumnCount(4);
+        if (tableWidget->columnCount() < 6)
+            tableWidget->setColumnCount(6);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
@@ -61,15 +65,19 @@ public:
         tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
+        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(5, __qtablewidgetitem5);
         if (tableWidget->rowCount() < 5)
             tableWidget->setRowCount(5);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
-        tableWidget->setGeometry(QRect(10, 60, 491, 291));
+        tableWidget->setGeometry(QRect(10, 60, 731, 291));
         tableWidget->setMouseTracking(false);
         tableWidget->setFocusPolicy(Qt::StrongFocus);
         tableWidget->setShowGrid(true);
         tableWidget->setRowCount(5);
-        tableWidget->setColumnCount(4);
+        tableWidget->setColumnCount(6);
         tableWidget->horizontalHeader()->setVisible(true);
         tableWidget->horizontalHeader()->setCascadingSectionResizes(false);
         tableWidget->horizontalHeader()->setDefaultSectionSize(120);
@@ -104,17 +112,17 @@ public:
         Contrast->setValue(1.000000000000000);
         widget = new QWidget(ParaTable);
         widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(560, 250, 200, 200));
+        widget->setGeometry(QRect(790, 250, 200, 200));
         widget->setMinimumSize(QSize(200, 200));
         widget->setMaximumSize(QSize(200, 200));
         Image = new QLabel(ParaTable);
         Image->setObjectName(QString::fromUtf8("Image"));
-        Image->setGeometry(QRect(560, 40, 200, 200));
+        Image->setGeometry(QRect(790, 40, 200, 200));
         Image->setMinimumSize(QSize(200, 200));
         Image->setMaximumSize(QSize(200, 200));
         label_4 = new QLabel(ParaTable);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(650, 20, 72, 15));
+        label_4->setGeometry(QRect(880, 20, 72, 15));
         Fnum = new QSlider(ParaTable);
         Fnum->setObjectName(QString::fromUtf8("Fnum"));
         Fnum->setGeometry(QRect(20, 360, 101, 22));
@@ -145,7 +153,21 @@ public:
         Load->setGeometry(QRect(380, 410, 93, 28));
         OK = new QPushButton(ParaTable);
         OK->setObjectName(QString::fromUtf8("OK"));
-        OK->setGeometry(QRect(190, 440, 101, 41));
+        OK->setGeometry(QRect(480, 400, 131, 51));
+        Frange = new QSlider(ParaTable);
+        Frange->setObjectName(QString::fromUtf8("Frange"));
+        Frange->setGeometry(QRect(500, 360, 101, 22));
+        Frange->setOrientation(Qt::Horizontal);
+        Wrange = new QSlider(ParaTable);
+        Wrange->setObjectName(QString::fromUtf8("Wrange"));
+        Wrange->setGeometry(QRect(620, 360, 101, 22));
+        Wrange->setOrientation(Qt::Horizontal);
+        label_5 = new QLabel(ParaTable);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setGeometry(QRect(640, 390, 111, 21));
+        label_6 = new QLabel(ParaTable);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setGeometry(QRect(630, 420, 131, 21));
 
         retranslateUi(ParaTable);
 
@@ -163,6 +185,10 @@ public:
         ___qtablewidgetitem2->setText(QApplication::translate("ParaTable", "A", nullptr));
         QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
         ___qtablewidgetitem3->setText(QApplication::translate("ParaTable", "P", nullptr));
+        QTableWidgetItem *___qtablewidgetitem4 = tableWidget->horizontalHeaderItem(4);
+        ___qtablewidgetitem4->setText(QApplication::translate("ParaTable", "F  Range", nullptr));
+        QTableWidgetItem *___qtablewidgetitem5 = tableWidget->horizontalHeaderItem(5);
+        ___qtablewidgetitem5->setText(QApplication::translate("ParaTable", "W Range", nullptr));
         label->setText(QApplication::translate("ParaTable", "Seed:", nullptr));
         KernelNum->setSuffix(QString());
         KernelNum->setPrefix(QString());
@@ -175,6 +201,8 @@ public:
         Save->setText(QApplication::translate("ParaTable", "Save", nullptr));
         Load->setText(QApplication::translate("ParaTable", "Load", nullptr));
         OK->setText(QApplication::translate("ParaTable", "OK", nullptr));
+        label_5->setText(QApplication::translate("ParaTable", "By:181860007", nullptr));
+        label_6->setText(QApplication::translate("ParaTable", "Github:karl0007", nullptr));
     } // retranslateUi
 
 };

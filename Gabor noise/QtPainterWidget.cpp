@@ -25,7 +25,7 @@ void QtPainterWidget::PaintCircle(QPainter &painter, double fi, double wi, doubl
 	QPointF center(100 + cos(wi)*fi * 20, 100 + sin(wi)*fi * 20);
 	QRadialGradient brush(center, a);
 	brush.setColorAt(1, QColor(0, 0, 0, 0));
-	brush.setColorAt(0, QColor(255, 255, 255, std::max(40.0,200 * p)));
+	brush.setColorAt(0, QColor(255, 255, 255, std::max(80.0,200 * p)));
 	painter.setBrush(brush);
 	painter.setPen(QColor(0, 0, 0, 0));
 	painter.drawEllipse(center, a, a);

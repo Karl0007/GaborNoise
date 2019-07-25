@@ -10,10 +10,12 @@
 #include "QtPainterWidget.h"
 #include "Gabor.h"
 #include "Image.h"
+#include "GLPainter.h"
 using Karl07::KernelMaker;
 using Karl07::Image;
 using Karl07::KernelData;
 using Karl07::Range;
+using Karl07::GaborMaker;
 using namespace Karl07::Setting;
 
 class ParaTable : public QWidget
@@ -31,6 +33,7 @@ private slots:
 	void TableClick(QModelIndex const& index);
 	void Save();
 	void Load();
+	void OK();
 	//void FminChange(int);
 	//void FmaxChange(int);
 	//void WminChange(int);

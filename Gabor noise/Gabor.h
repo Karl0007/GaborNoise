@@ -67,8 +67,8 @@ namespace Karl07 {
 		int weight;
 		KernelData(Range &f = Range(5, 5), Range &w = Range(0, 0),double A = 1,int weight = 1) :
 			F(f), W(w), weight(weight),A(A) {
-			F = F.Fix(1/Setting::FRange, Setting::FRange);
-			W = W.Fix(0, Const::pi);
+			F = F.Fix(Setting::FMIN, Setting::FMAX);
+			W = W.Fix(Setting::WMIN, Setting::WMAX);
 		}
 		string ToStr() {}
 	};
@@ -80,7 +80,8 @@ namespace Karl07 {
 	public:
 		KernelMaker() {}
 		KernelMaker(KernelData &Data):
-			W(Data.W.l, Data.W.r), F(Data.F.l, Data.F.r),A(Data.A){};
+			W(Data.W.l, Data.W.r), F(Data.F.l, Data.F.r),A(Data.A){
+		};
 
 		auto Make(int seed = 0) {
 			minstd_rand e(seed);
@@ -91,7 +92,7 @@ namespace Karl07 {
 			minstd_rand e(seed);
 			static uniform_real_distribution<double> d(-DR, DR);
 			double w = W(e), f = F(e), x = -d(e) + x0, y = -d(e) + y0;
-			return  std::exp(-Const::pi*(1.0 / (DR*DR))*(x*x + y * y)) * std::cos(2 * Const::pi*f / DR * (x*std::cos(w) + y * std::sin(w)));
+			return  std::exp(-Const::pi*(1.0 / (DR*DR )* A * A)*(x*x + y * y)) * std::cos(2 * Const::pi*f / DR * (x*std::cos(w) + y * std::sin(w)));
 		}
 	};
 
@@ -128,6 +129,78 @@ namespace Karl07 {
 		}
 	};
 
+	class GaborCube : public Func {
+	public:
+		map<double, KernelMaker> maker;
+		int N, mx, my, cnt, r;
+		double con;
+	public:
+		GaborCube() : Func(-1, 1) {}
+		GaborCube(map<double, KernelMaker> &maker, int N, int cnt, double con, int mx = 0, int my = 0, int r = 0)
+			:Func(-1, 1), maker(maker), N(N), mx(mx), my(my), cnt(cnt), r(r), con(con) {}
+
+		double operator()(double x, double y) {
+			double res = 0;
+			static uniform_real_distribution<double> d(-DR, DR);
+			static uniform_real_distribution<double> d01(0, 1);
+			static uniform_real_distribution<double> d11(-1, 1);
+
+			int posx = Range(0, 1).Reflect(Range(-DR, DR).Normalize(x));
+			int posy = Range(0, 1).Reflect(Range(-DR, DR).Normalize(y));
+
+			static int table[][4] = {
+				2,3,4,5,
+				6,1,4,5,
+				1,6,4,5,
+				2,3,6,1,
+				2,3,1,6,
+				3,2,4,5,
+			};
+
+			{
+				minstd_rand e(N + r);
+				for (int k = 0; k < cnt; k++) {
+					res += con * d11(e) * (--maker.upper_bound(d01(e)))->second(e(),
+						-(x * 1 - (posx - 1 / 2)*DR * 2) + 0 * DR * 2,
+						-(y * 1 - (posy - 1 / 2)*DR * 2) + 0 * DR * 2);
+				}
+			}
+			{
+				minstd_rand e(table[N - 1][0] + r);
+				for (int k = 0; k < cnt; k++) {
+					res += con * d11(e) * (--maker.upper_bound(d01(e)))->second(e(),
+						-(x * 1 - (posx - 1 / 2)*DR * 2) + 1 * DR * 2,
+						-(y * 1 - (posy - 1 / 2)*DR * 2) + 0 * DR * 2);
+				}
+			}
+			{
+				minstd_rand e(table[N - 1][1] + r);
+				for (int k = 0; k < cnt; k++) {
+					res += con * d11(e) * (--maker.upper_bound(d01(e)))->second(e(),
+						-(x * 1 - (posx - 1 / 2)*DR * 2) + -1 * DR * 2,
+						-(y * 1 - (posy - 1 / 2)*DR * 2) + 0 * DR * 2);
+				}
+			}
+			{
+				minstd_rand e(table[N - 1][2] + r);
+				for (int k = 0; k < cnt; k++) {
+					res += con * d11(e) * (--maker.upper_bound(d01(e)))->second(e(),
+						-(x * 1 - (posx - 1 / 2)*DR * 2) + 0 * DR * 2,
+						-(y * 1 - (posy - 1 / 2)*DR * 2) + 1 * DR * 2);
+				}
+			}
+			{
+				minstd_rand e(table[N - 1][3] + r);
+				for (int k = 0; k < cnt; k++) {
+					res += con * d11(e) * (--maker.upper_bound(d01(e)))->second(e(),
+						-(x * 1 - (+posx - 1 / 2)*DR * 2) + 0 * DR * 2,
+						-(y * 1 - (posy - 1 / 2)*DR * 2) + -1 * DR * 2);
+				}
+			}
+			return res;
+		}
+	};
+
 	class GaborMaker {
 	public:
 		map<double, KernelMaker> maker;
@@ -137,6 +210,9 @@ namespace Karl07 {
 			double sum = 0, t = 0;
 			for (auto &i : data) sum += i.weight;
 			for (auto &i : data) maker[t] = KernelMaker(i), t += i.weight / sum;
+		}
+		GaborCube Cube(double N, double con = 1, int r = 0) {
+			return GaborCube(maker, N, cnt, con, r);
 		}
 		Gabor operator()(double con = 1,int x=0,int y = 0,int r = 0) {
 			return Gabor(maker,N,cnt,con,x,y ,r);

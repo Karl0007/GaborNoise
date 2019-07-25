@@ -6,10 +6,10 @@ GaborNoise::GaborNoise(QWidget *parent)
 	ui.setupUi(this);
 	TryGabor *tg = new TryGabor(this);
 	//tg->show();
-	GLPainter *P = new GLPainter(this);
+	//GLPainter *P = new GLPainter(this);
 	//P->show();
 	ui.horizontalLayout->addWidget(tg);
-	ui.horizontalLayout->addWidget(P);
+	//ui.horizontalLayout->addWidget(P);
 	RandEngine.seed(time(0));
 	(new QColorDialog)->show();
 
