@@ -19,7 +19,7 @@ class GLPainter : public QGLWidget
 	Q_OBJECT
 
 private:
-	static const int size = 9;
+	static const int size = 8;
 	GLUquadric *obj;
 	Image *img;
 	QLabel *label;
@@ -30,7 +30,7 @@ private:
 
 public:
 	float rx, ry,lx,ly;
-	GLPainter(QWidget *parent,Func &fun,GaborMaker &gmk);
+	GLPainter(QWidget *parent,Func &fun,QWidget *IMG);
 	~GLPainter();
 	void initializeGL();
 	void resizeGL(int x, int y);

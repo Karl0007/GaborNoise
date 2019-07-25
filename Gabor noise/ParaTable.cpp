@@ -5,6 +5,8 @@ ParaTable::ParaTable(QWidget *parent)
 {
 	ui.setupUi(this);
 
+	setFixedSize(size());
+
 	painter = new QtPainterWidget(ui.widget, *ui.tableWidget);
 
 	ui.tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -135,10 +137,15 @@ void ParaTable::OK()
 		double w = ui.tableWidget->item(i, 1)->text().toDouble();
 		double a = ui.tableWidget->item(i, 2)->text().toDouble();
 		int p = ui.tableWidget->item(i, 3)->text().toInt();
-		vec.push_back(KernelData(Range(f, f), Range(w, w), a, p));
+		double fr = ui.tableWidget->item(i, 4)->text().toDouble();
+		double wr = ui.tableWidget->item(i, 5)->text().toDouble();
+
+		vec.push_back(KernelData(Range(f-fr, f+fr), Range(w+wr, w-wr), a, p));
 	}
-	GaborMaker fun(vec,3,ui.KernelNum->value(),ui.Seed->value());
-	(new GLPainter(nullptr, fun(ui.Contrast->value()),fun))->show();
+	GaborMaker fun(vec,4,ui.KernelNum->value(),ui.Seed->value());
+	auto view = new GaborNoiseView;
+	view->show();
+	(new GLPainter(view->ui.W1, fun(ui.Contrast->value(),0,0, ui.Seed->value()),view->ui.W2))->show();
 }
 
 void ParaTable::setNew(int index,int from)

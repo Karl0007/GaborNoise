@@ -86,7 +86,8 @@ public:
         tableWidget->verticalHeader()->setDefaultSectionSize(30);
         Seed = new QSpinBox(ParaTable);
         Seed->setObjectName(QString::fromUtf8("Seed"));
-        Seed->setGeometry(QRect(80, 20, 61, 22));
+        Seed->setGeometry(QRect(80, 20, 71, 22));
+        Seed->setMaximum(99999);
         label = new QLabel(ParaTable);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(20, 20, 51, 20));
@@ -94,7 +95,7 @@ public:
         KernelNum->setObjectName(QString::fromUtf8("KernelNum"));
         KernelNum->setGeometry(QRect(260, 20, 61, 22));
         KernelNum->setMinimum(5);
-        KernelNum->setMaximum(100);
+        KernelNum->setMaximum(500);
         KernelNum->setSingleStep(5);
         KernelNum->setValue(20);
         label_2 = new QLabel(ParaTable);

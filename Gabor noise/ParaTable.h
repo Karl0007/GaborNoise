@@ -11,6 +11,7 @@
 #include "Gabor.h"
 #include "Image.h"
 #include "GLPainter.h"
+#include "GaborNoiseView.h"
 using Karl07::KernelMaker;
 using Karl07::Image;
 using Karl07::KernelData;

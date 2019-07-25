@@ -17,6 +17,9 @@
     <ClCompile Include="ParaTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GaborNoiseView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource Files">
@@ -56,6 +59,9 @@
     <QtMoc Include="ParaTable.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="GaborNoiseView.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="GaborNoise.qrc">
@@ -87,6 +93,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="ParaTable.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="GaborNoiseView.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

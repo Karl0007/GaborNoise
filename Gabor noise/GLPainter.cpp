@@ -1,16 +1,16 @@
 #include "GLPainter.h"
 
-GLPainter::GLPainter(QWidget *parent, Func &fun,GaborMaker &gmk)
+GLPainter::GLPainter(QWidget *parent, Func &fun,QWidget *IMG)
 	: QGLWidget(parent)
 {
-	this->setFixedSize(500, 500);
+	this->setFixedSize(256, 256);
 	rx = ry = 0;
 
 	img = new Image(1 << size, 1 << size);
 	t = new GLTexture<size>;
 	img->Reset(fun);
 	obj = gluNewQuadric();
-	label = new QLabel(nullptr);
+	label = new QLabel(IMG);
 	label->setPixmap(QPixmap::fromImage(QImage(img->m_data, img->W(), img->H(), QImage::Format::Format_RGBA8888)));
 	label->show();
 

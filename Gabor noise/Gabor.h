@@ -114,7 +114,6 @@ namespace Karl07 {
 			
 			int posx = Range(0, N).Reflect(Range(-DR, DR).Normalize(x));
 			int posy = Range(0, N).Reflect(Range(-DR, DR).Normalize(y));
-
 			for (int i = -1; i <= 1; i++) {
 				for (int j = -1; j <= 1; j++) {
 					minstd_rand e((posx+i+N)%N+ ((posy + j+N)%N)*N + r);
