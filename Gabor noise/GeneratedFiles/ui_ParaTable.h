@@ -48,6 +48,7 @@ public:
     QSlider *Wrange;
     QLabel *label_5;
     QLabel *label_6;
+    QLabel *label_7;
 
     void setupUi(QWidget *ParaTable)
     {
@@ -165,10 +166,13 @@ public:
         Wrange->setOrientation(Qt::Horizontal);
         label_5 = new QLabel(ParaTable);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(640, 390, 111, 21));
+        label_5->setGeometry(QRect(630, 390, 111, 21));
         label_6 = new QLabel(ParaTable);
         label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(630, 420, 131, 21));
+        label_6->setGeometry(QRect(630, 410, 131, 21));
+        label_7 = new QLabel(ParaTable);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setGeometry(QRect(630, 430, 131, 21));
 
         retranslateUi(ParaTable);
 
@@ -204,6 +208,7 @@ public:
         OK->setText(QApplication::translate("ParaTable", "OK", nullptr));
         label_5->setText(QApplication::translate("ParaTable", "By:181860007", nullptr));
         label_6->setText(QApplication::translate("ParaTable", "Github:karl0007", nullptr));
+        label_7->setText(QApplication::translate("ParaTable", "V0.11", nullptr));
     } // retranslateUi
 
 };
