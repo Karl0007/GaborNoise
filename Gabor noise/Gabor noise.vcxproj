@@ -117,6 +117,9 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="ColorPainter.cpp" />
+    <ClCompile Include="ColorSetting.cpp" />
     <ClCompile Include="GaborNoise.cpp" />
     <ClCompile Include="GaborNoiseView.cpp" />
     <ClCompile Include="GLPainter.cpp" />
@@ -132,6 +135,15 @@
     <QtRcc Include="GaborNoise.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Color.h" />
+    <QtMoc Include="ColorSetting.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtOpenGLExtensions;$(QTDIR)\include\QtWidgets</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtOpenGLExtensions;$(QTDIR)\include\QtWidgets</IncludePath>
+    </QtMoc>
+    <QtMoc Include="ColorPainter.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtOpenGLExtensions;$(QTDIR)\include\QtWidgets</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtOpenGLExtensions;$(QTDIR)\include\QtWidgets</IncludePath>
+    </QtMoc>
     <ClInclude Include="ConstNum.h" />
     <ClInclude Include="Gabor.h" />
     <QtMoc Include="ParaTable.h">
@@ -159,6 +171,7 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="ColorSetting.ui" />
     <QtUic Include="GaborNoiseView.ui" />
     <QtUic Include="MainWindow.ui" />
     <QtUic Include="ParaTable.ui" />

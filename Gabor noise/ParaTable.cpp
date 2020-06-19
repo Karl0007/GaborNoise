@@ -41,6 +41,7 @@ ParaTable::ParaTable(QWidget *parent)
 	QObject::connect(ui.Save, &QPushButton::clicked, this, &ParaTable::Save);
 	QObject::connect(ui.Load, &QPushButton::clicked, this, &ParaTable::Load);
 	QObject::connect(ui.OK, &QPushButton::clicked, this, &ParaTable::OK);
+	QObject::connect(ui.Color, &QPushButton::clicked, this, &ParaTable::Color);
 
 }
 
@@ -145,7 +146,12 @@ void ParaTable::OK()
 	GaborMaker fun(vec,4,ui.KernelNum->value(),ui.Seed->value());
 	auto view = new GaborNoiseView;
 	view->show();
-	(new GLPainter(view->ui.W1, fun(ui.Contrast->value(),0,0, ui.Seed->value()),view->ui.W2))->show();
+	(new GLPainter(view->ui.W1, fun(ui.Contrast->value(),0,0, ui.Seed->value()),view->ui.W2,color_map))->show();
+}
+
+void ParaTable::Color()
+{
+	(new ColorSetting(color_map))->show();
 }
 
 void ParaTable::setNew(int index,int from)

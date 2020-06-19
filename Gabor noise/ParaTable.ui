@@ -432,7 +432,20 @@
     </rect>
    </property>
    <property name="text">
-    <string>V0.11</string>
+    <string>V0.12</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Color">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>10</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Color</string>
    </property>
   </widget>
  </widget>

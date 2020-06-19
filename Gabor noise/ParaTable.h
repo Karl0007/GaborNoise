@@ -12,11 +12,15 @@
 #include "Image.h"
 #include "GLPainter.h"
 #include "GaborNoiseView.h"
+#include "Color.h"
+#include "ColorSetting.h"
 using Karl07::KernelMaker;
 using Karl07::Image;
 using Karl07::KernelData;
 using Karl07::Range;
 using Karl07::GaborMaker;
+using Karl07::Color;
+using Karl07::ColorMap;
 using namespace Karl07::Setting;
 
 class ParaTable : public QWidget
@@ -35,6 +39,7 @@ private slots:
 	void Save();
 	void Load();
 	void OK();
+	void Color();
 	//void FminChange(int);
 	//void FmaxChange(int);
 	//void WminChange(int);
@@ -46,6 +51,7 @@ private:
 	double fmin, fmax, wmin, wmax,pnum,anum,frg,wrg;
 	void setNew(int index,int from);
 	void getNum(int index);
+	ColorMap color_map;
 	QtPainterWidget *painter;
 	Ui::ParaTable ui;
 };

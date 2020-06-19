@@ -20,6 +20,15 @@
     <ClCompile Include="GaborNoiseView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorSetting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorPainter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource Files">
@@ -62,6 +71,12 @@
     <QtMoc Include="GaborNoiseView.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="ColorSetting.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ColorPainter.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="GaborNoise.qrc">
@@ -84,6 +99,9 @@
     <ClInclude Include="GLTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="TryGabor.ui">
@@ -96,6 +114,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="GaborNoiseView.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ColorSetting.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

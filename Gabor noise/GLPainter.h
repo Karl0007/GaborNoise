@@ -5,6 +5,7 @@
 #include "GLTexture.h"
 #include "Image.h"
 #include "Gabor.h"
+#include "Color.h"
 #include <gl/GLU.h>
 #include <qopengl.h>
 #include <qevent.h>
@@ -14,6 +15,7 @@ using Karl07::GaborMaker;
 using Karl07::Image;
 using Karl07::GLTexture;
 using Karl07::Func;
+using Karl07::ColorMap;
 class GLPainter : public QGLWidget
 {
 	Q_OBJECT
@@ -30,7 +32,7 @@ private:
 
 public:
 	float rx, ry,lx,ly;
-	GLPainter(QWidget *parent,Func &fun,QWidget *IMG);
+	GLPainter(QWidget *parent,Func &fun,QWidget *IMG,ColorMap & map);
 	~GLPainter();
 	void initializeGL();
 	void resizeGL(int x, int y);

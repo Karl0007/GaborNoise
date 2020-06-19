@@ -1,6 +1,6 @@
 #include "GLPainter.h"
 
-GLPainter::GLPainter(QWidget *parent, Func &fun,QWidget *IMG)
+GLPainter::GLPainter(QWidget *parent, Func &fun,QWidget *IMG,ColorMap &map)
 	: QGLWidget(parent)
 {
 	this->setFixedSize(256, 256);
@@ -9,10 +9,12 @@ GLPainter::GLPainter(QWidget *parent, Func &fun,QWidget *IMG)
 	img = new Image(1 << size, 1 << size);
 	t = new GLTexture<size>;
 	img->Reset(fun);
+	img->Color(map);
 	obj = gluNewQuadric();
 	label = new QLabel(IMG);
 	label->setPixmap(QPixmap::fromImage(QImage(img->m_data, img->W(), img->H(), QImage::Format::Format_RGBA8888)));
 	label->show();
+	img->RevColor();
 
 	//for (int i = 0; i < 6; i++) {
 	//	img2[i] = new Image(1 << size, 1 << size);

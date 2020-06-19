@@ -49,6 +49,7 @@ public:
     QLabel *label_5;
     QLabel *label_6;
     QLabel *label_7;
+    QPushButton *Color;
 
     void setupUi(QWidget *ParaTable)
     {
@@ -173,6 +174,9 @@ public:
         label_7 = new QLabel(ParaTable);
         label_7->setObjectName(QString::fromUtf8("label_7"));
         label_7->setGeometry(QRect(630, 430, 131, 21));
+        Color = new QPushButton(ParaTable);
+        Color->setObjectName(QString::fromUtf8("Color"));
+        Color->setGeometry(QRect(550, 10, 91, 41));
 
         retranslateUi(ParaTable);
 
@@ -208,7 +212,8 @@ public:
         OK->setText(QApplication::translate("ParaTable", "OK", nullptr));
         label_5->setText(QApplication::translate("ParaTable", "By:181860007", nullptr));
         label_6->setText(QApplication::translate("ParaTable", "Github:karl0007", nullptr));
-        label_7->setText(QApplication::translate("ParaTable", "V0.11", nullptr));
+        label_7->setText(QApplication::translate("ParaTable", "V0.12", nullptr));
+        Color->setText(QApplication::translate("ParaTable", "Color", nullptr));
     } // retranslateUi
 
 };

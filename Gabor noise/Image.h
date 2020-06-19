@@ -2,6 +2,7 @@
 #include <functional>
 #include <iostream>
 #include <random>
+#include "Color.h"
 #include "MathFun2d.h"
 namespace Karl07 {
 	using Byte = unsigned char;
@@ -52,6 +53,26 @@ namespace Karl07 {
 			for (int i = 0; i < m_h*m_w; i++) m_double[i] = 0;
 		}
 
+		void RevColor() {
+			for (int i = 0; i < m_h*m_w; i++) {
+				m_data[i * deep + 0] = 255 - m_data[i * deep + 0];
+				m_data[i * deep + 1] = 255 - m_data[i * deep + 1];
+				m_data[i * deep + 2] = 255 - m_data[i * deep + 2];
+				m_data[i * deep + 3] = 255;
+
+			}
+		}
+
+		void Color(ColorMap & c) {
+			for (int i = 0; i < m_h*m_w; i++) {
+				int tmp = m_data[i * deep];
+				m_data[i * deep + 0] = c.Mapping(tmp).r;
+				m_data[i * deep + 1] = c.Mapping(tmp).g;
+				m_data[i * deep + 2] = c.Mapping(tmp).b;
+				m_data[i * deep + 3] = 255;
+
+			}
+		}
 
 		void Update() {
 			static const Range m_sz = Range(0, 255);
